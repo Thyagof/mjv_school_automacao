@@ -2,16 +2,13 @@ package pages;
 
 import elements.DemonstrationElements;
 import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.ElementNotInteractableException;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.*;
 
 import java.time.Duration;
 
@@ -31,12 +28,8 @@ public class DemonstrationPage extends DemonstrationElements {
         driver.get("https://phptravels.com/demo");
     }
 
-    public void validarExibFirstName(){
-        Assertions.assertTrue(firstName.isDisplayed());
-    }
-
-    public void digitarFirstName(String nome){
-        firstName.sendKeys(nome);
+    public void preencherCampo(WebElement elemento, String texto){
+        elemento.sendKeys(texto);
     }
 
     public void clickNoElemento(WebElement element) {
@@ -52,6 +45,8 @@ public class DemonstrationPage extends DemonstrationElements {
     }
 
     public void validarVisibilidadeDoElemento(WebElement elemento) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait.until(ExpectedConditions.visibilityOf(elemento));
         Assertions.assertTrue(elemento.isDisplayed());
     }
 
@@ -72,5 +67,24 @@ public class DemonstrationPage extends DemonstrationElements {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void validarAlerta(String texto) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.alertIsPresent());
+        Alert alert = driver.switchTo().alert();
+        String alertTexto = alert.getText();
+        alert.dismiss();
+        Assertions.assertEquals(texto, alertTexto);
+    }
+
+    public void selecionarItemSelect(String texto) {
+        Select select = new Select(selectCountry);
+        select.selectByVisibleText(texto);
+    }
+
+    public void preencheCaptcha() {
+        Integer resultado = Integer.valueOf(numberCaptcha1.getText()) + Integer.valueOf(numberCaptcha2.getText());
+        preencherCampo(resultCaptcha, Integer.toString(resultado));
     }
 }

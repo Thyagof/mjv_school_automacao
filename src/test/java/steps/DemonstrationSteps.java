@@ -8,6 +8,7 @@ import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import pages.DemonstrationPage;
@@ -18,13 +19,14 @@ public class DemonstrationSteps {
 
     @Before
     public void iniciarDriver(){
-        //System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");
+//        System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");
+//        ChromeOptions options = new ChromeOptions();
         System.setProperty("webdriver.edge.driver", "src/test/resources/drivers/msedgedriver.exe");
-        //driver = new ChromeDriver();
         EdgeOptions options = new EdgeOptions();
         options.addArguments("--start-maximized");
-        //options.addArguments("--headless=new");
+//        options.addArguments("--headless=new");
         driver = new EdgeDriver(options);
+//        driver = new ChromeDriver(options);
         demonstrationPage = new DemonstrationPage(driver);
     }
 
@@ -38,15 +40,6 @@ public class DemonstrationSteps {
         demonstrationPage.acessarSite();
     }
 
-    @When("visualizar o campo FIRST NAME")
-    public void visualizarOCampoFIRSTNAME() {
-        demonstrationPage.validarExibFirstName();
-    }
-
-    @Then("digita seu nome no campo FIRST NAME")
-    public void digitaSeuNomeNoCampoFIRSTNAME() {
-        demonstrationPage.digitarFirstName("Leo");
-    }
 
     @When("clicar no botão de Login")
     public void clicarNoBotaoDeLogin() {
@@ -156,5 +149,76 @@ public class DemonstrationSteps {
     @Then("deve ser redirecionado para a página correta")
     public void deveSerRedirecionadoParaAPaginaCorreta() {
         demonstrationPage.validarRedirecionamento("https://phptravels.com/themes");
+    }
+
+    @Then("o formulário Demo Request Form deve estar visível")
+    public void oFormularioDemoRequestFormDeveEstarVisivel() {
+        demonstrationPage.validarVisibilidadeDoElemento(demonstrationPage.formDemoRequest);
+    }
+
+    @When("clicar no botão Submit")
+    public void clicarNoBotaoSubmit() {
+        demonstrationPage.clickNoElemento(demonstrationPage.btnSubmit);
+    }
+
+    @Then("o alerta avisando que o First Name deve ser preenchido deve ser exibido")
+    public void oAlertaAvisandoQueOFirstNameDeveSerPreenchidoDeveSerExibido() {
+        demonstrationPage.validarAlerta("Please type your first name");
+    }
+
+    @When("preencher o campo FIRST NAME")
+    public void preencherOCampoFIRSTNAME() {
+        demonstrationPage.preencherCampo(demonstrationPage.firstName, "Jorge");
+    }
+
+    @And("preencher o campo LAST NAME")
+    public void preencherOCampoLASTNAME() {
+        demonstrationPage.preencherCampo(demonstrationPage.lastName, "Teste");
+    }
+
+    @And("selecionar o país no campo SELECT COUNTRY")
+    public void selecionarOPaisNoCampoSELECTCOUNTRY() {
+        demonstrationPage.selecionarItemSelect("Brazil +55");
+    }
+
+    @And("preencher o campo WHATSAPP NUMBER")
+    public void preencherOCampoWHATSAPPNUMBER() {
+        demonstrationPage.preencherCampo(demonstrationPage.whatsappNumber, "11963636363");
+    }
+
+    @And("preencher o campo BUSINESS NAME")
+    public void preencherOCampoBUSINESSNAME() {
+        demonstrationPage.preencherCampo(demonstrationPage.businessName, "google");
+    }
+
+    @And("preencher o campo EMAIL")
+    public void preencherOCampoEMAIL() {
+        demonstrationPage.preencherCampo(demonstrationPage.email, "jorge@teste.com");
+    }
+
+    @And("preencher o CAPTCHA")
+    public void preencherOCAPTCHA() {
+        demonstrationPage.preencheCaptcha();
+    }
+
+    @Then("deve ser exibido aviso de que as credenciais foram enviadas")
+    public void deveSerExibidoAvisoDeQueAsCredenciaisForamEnviadas() {
+        demonstrationPage.validarVisibilidadeDoElemento(demonstrationPage.divComplete);
+
+    }
+
+    @And("preencher o CAPTCHA com valor inválido")
+    public void preencherOCAPTCHAComValorInvalido() {
+        demonstrationPage.preencherCampo(demonstrationPage.resultCaptcha, "0");
+    }
+
+    @Then("o alerta avisando que o resultado do captcha está errado deve ser exibido")
+    public void oAlertaAvisandoQueOResultadoDoCaptchaEstaErradoDeveSerExibido() {
+        demonstrationPage.validarAlerta("Result number is invalid");
+    }
+
+    @And("preencher o campo EMAIL com valor inválido")
+    public void preencherOCampoEMAILComValorInvalido() {
+        demonstrationPage.preencherCampo(demonstrationPage.email, "jorgeteste.com");
     }
 }
