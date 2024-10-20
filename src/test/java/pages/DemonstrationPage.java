@@ -3,7 +3,9 @@ package pages;
 import elements.DemonstrationElements;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -34,13 +36,31 @@ public class DemonstrationPage extends DemonstrationElements {
         firstName.sendKeys(nome);
     }
 
-    public void clickBtnLogin() {
-        action.click(btnLogin).perform();
+    public void clickBtn(WebElement element) {
+        action.click(element).perform();
     }
 
     public void checarAbaDeRedirecionamento(String titulo) {
         Object[] windowHandles=driver.getWindowHandles().toArray();
         driver.switchTo().window((String) windowHandles[1]);
         Assertions.assertEquals(titulo, driver.getTitle());
+    }
+
+    public void checarVisibilidadeDoElemento(WebElement elemento) {
+        Assertions.assertTrue(elemento.isDisplayed());
+    }
+
+    public void checarTextoDoElemento(WebElement elemento, String texto) {
+        Assertions.assertEquals(elemento.getText(), texto);
+    }
+
+    public void validarACorDoElemento(WebElement elemento, String rgb){
+        String corHexAtual = Color.fromString(elemento.getCssValue("background-color")).asHex();
+        String corHexEsperada = Color.fromString(rgb).asHex();
+        Assertions.assertEquals(corHexEsperada, corHexAtual);
+    }
+
+    public void hoverNoElemento(WebElement elemento){
+        action.moveToElement(elemento).perform();
     }
 }

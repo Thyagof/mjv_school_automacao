@@ -20,6 +20,11 @@ public class DemonstrationSteps {
         demonstrationPage = new DemonstrationPage(driver);
     }
 
+    @After
+    public void fecharDriver(){
+        driver.quit();
+    }
+
     @Given("que o usuário esteja na página PHPTRAVELS")
     public void queOUsuarioEstejaNaPaginaPHPTRAVELS() {
         demonstrationPage.acessarSite();
@@ -37,15 +42,36 @@ public class DemonstrationSteps {
 
     @When("o usuário clicar no botão de Login")
     public void oUsuarioClicarNoBotaoDeLogin() {
-        demonstrationPage.clickBtnLogin();
+        demonstrationPage.clickBtn(demonstrationPage.btnLogin);
     }
 
     @Then("deve ser redirecionado para o formulário de login")
     public void deveSerRedirecionadoParaOFormularioDeLogin() {
         demonstrationPage.checarAbaDeRedirecionamento("Login");
     }
-    @After
-    public void fecharDriver(){
-        driver.quit();
+
+    @Then("o botão Login deve estar visível")
+    public void oBotaoLoginDeveEstarVisivel() {
+        demonstrationPage.checarVisibilidadeDoElemento(demonstrationPage.btnLogin);
+    }
+
+    @Then("o texto do botão Login deve estar correto")
+    public void oTextoDoBotaoLoginDeveEstarCorreto() {
+        demonstrationPage.checarTextoDoElemento(demonstrationPage.btnLogin, "Login");
+    }
+
+    @Then("a cor do botão Login deve estar correta")
+    public void aCorDoBotaoLoginDeveEstarCorreta() {
+        demonstrationPage.validarACorDoElemento(demonstrationPage.btnLogin, "rgb(0, 82, 231)");
+    }
+
+    @When("o usuário der hover no botão Login")
+    public void oUsuarioDerHoverNoBotaoLogin() {
+        demonstrationPage.hoverNoElemento(demonstrationPage.btnLogin);
+    }
+
+    @Then("a cor do botão em hover Login deve estar correta")
+    public void aCorDoBotaoEmHoverLoginDeveEstarCorreta() {
+        demonstrationPage.validarACorDoElemento(demonstrationPage.btnLogin, "rgb(0, 94, 255)");
     }
 }
