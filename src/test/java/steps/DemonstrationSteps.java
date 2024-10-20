@@ -8,6 +8,8 @@ import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import pages.DemonstrationPage;
 
 public class DemonstrationSteps {
@@ -16,8 +18,13 @@ public class DemonstrationSteps {
 
     @Before
     public void iniciarDriver(){
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");
-        driver = new ChromeDriver();
+        //System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");
+        System.setProperty("webdriver.edge.driver", "src/test/resources/drivers/msedgedriver.exe");
+        //driver = new ChromeDriver();
+        EdgeOptions options = new EdgeOptions();
+        options.addArguments("--start-maximized");
+        //options.addArguments("--headless=new");
+        driver = new EdgeDriver(options);
         demonstrationPage = new DemonstrationPage(driver);
     }
 
