@@ -14,10 +14,10 @@ Feature: Botão de Sign Up
 
   Scenario: Validação da cor do botão Sign Up quando sofre hover
     Given que o usuário esteja na página PHPTRAVELS
-    When o usuário der hover no botão Sign Up
+    When der hover no botão Sign Up
     Then a cor do botão em hover Sign Up deve estar correta
 
   Scenario: Redirecionamento para a página de Sign Up
     Given que o usuário esteja na página PHPTRAVELS
-    When o usuário clicar no botão de Sign Up
+    When clicar no botão de Sign Up
     Then deve ser redirecionado para o formulário de Sign Up

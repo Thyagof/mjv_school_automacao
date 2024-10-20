@@ -2,11 +2,15 @@ package pages;
 
 import elements.DemonstrationElements;
 import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -36,21 +40,23 @@ public class DemonstrationPage extends DemonstrationElements {
         firstName.sendKeys(nome);
     }
 
-    public void clickBtn(WebElement element) {
+    public void clickNoElemento(WebElement element) {
         action.click(element).perform();
     }
 
-    public void checarRedirecionamento(String url) {
-        Object[] windowHandles=driver.getWindowHandles().toArray();
-        driver.switchTo().window((String) windowHandles[1]);
+    public void validarRedirecionamento(String url) {
+        Object[] windowHandles = driver.getWindowHandles().toArray();
+        if (windowHandles.length > 1) {
+            driver.switchTo().window((String) windowHandles[1]);
+        }
         Assertions.assertEquals(url, driver.getCurrentUrl());
     }
 
-    public void checarVisibilidadeDoElemento(WebElement elemento) {
+    public void validarVisibilidadeDoElemento(WebElement elemento) {
         Assertions.assertTrue(elemento.isDisplayed());
     }
 
-    public void checarTextoDoElemento(WebElement elemento, String texto) {
+    public void validarTextoDoElemento(WebElement elemento, String texto) {
         Assertions.assertEquals(elemento.getText(), texto);
     }
 
@@ -62,5 +68,10 @@ public class DemonstrationPage extends DemonstrationElements {
 
     public void hoverNoElemento(WebElement elemento){
         action.moveToElement(elemento).perform();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

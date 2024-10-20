@@ -14,10 +14,10 @@ Feature: Botão de Login
 
   Scenario: Validação da cor do botão Login quando sofre hover
     Given que o usuário esteja na página PHPTRAVELS
-    When o usuário der hover no botão Login
+    When der hover no botão Login
     Then a cor do botão em hover Login deve estar correta
 
   Scenario: Redirecionamento para a página de login
     Given que o usuário esteja na página PHPTRAVELS
-    When o usuário clicar no botão de Login
+    When clicar no botão de Login
     Then deve ser redirecionado para o formulário de login
