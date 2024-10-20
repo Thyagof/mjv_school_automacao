@@ -40,10 +40,10 @@ public class DemonstrationPage extends DemonstrationElements {
         action.click(element).perform();
     }
 
-    public void checarAbaDeRedirecionamento(String titulo) {
+    public void checarRedirecionamento(String url) {
         Object[] windowHandles=driver.getWindowHandles().toArray();
         driver.switchTo().window((String) windowHandles[1]);
-        Assertions.assertEquals(titulo, driver.getTitle());
+        Assertions.assertEquals(url, driver.getCurrentUrl());
     }
 
     public void checarVisibilidadeDoElemento(WebElement elemento) {

@@ -47,7 +47,7 @@ public class DemonstrationSteps {
 
     @Then("deve ser redirecionado para o formulário de login")
     public void deveSerRedirecionadoParaOFormularioDeLogin() {
-        demonstrationPage.checarAbaDeRedirecionamento("Login");
+        demonstrationPage.checarRedirecionamento("https://app.phptravels.com/login");
     }
 
     @Then("o botão Login deve estar visível")
@@ -73,5 +73,40 @@ public class DemonstrationSteps {
     @Then("a cor do botão em hover Login deve estar correta")
     public void aCorDoBotaoEmHoverLoginDeveEstarCorreta() {
         demonstrationPage.validarACorDoElemento(demonstrationPage.btnLogin, "rgb(0, 94, 255)");
+    }
+
+    @Then("o botão Sign Up deve estar visível")
+    public void oBotaoSignUpDeveEstarVisivel() {
+        demonstrationPage.checarVisibilidadeDoElemento(demonstrationPage.btnSignUp);
+    }
+
+    @Then("o texto do botão Sign Up deve estar correto")
+    public void oTextoDoBotaoSignUpDeveEstarCorreto() {
+        demonstrationPage.checarTextoDoElemento(demonstrationPage.btnSignUp, "Sign Up");
+    }
+
+    @Then("a cor do botão Sign Up deve estar correta")
+    public void aCorDoBotaoSignUpDeveEstarCorreta() {
+        demonstrationPage.validarACorDoElemento(demonstrationPage.btnSignUp, "rgb(248, 249, 250)");
+    }
+
+    @When("o usuário der hover no botão Sign Up")
+    public void oUsuarioDerHoverNoBotaoSignUp() {
+        demonstrationPage.hoverNoElemento(demonstrationPage.btnSignUp);
+    }
+
+    @Then("a cor do botão em hover Sign Up deve estar correta")
+    public void aCorDoBotaoEmHoverSignUpDeveEstarCorreta() {
+        demonstrationPage.validarACorDoElemento(demonstrationPage.btnSignUp, "rgb(211, 212, 213)");
+    }
+
+    @When("o usuário clicar no botão de Sign Up")
+    public void oUsuarioClicarNoBotaoDeSignUp() {
+        demonstrationPage.clickBtn(demonstrationPage.btnSignUp);
+    }
+
+    @Then("deve ser redirecionado para o formulário de Sign Up")
+    public void deveSerRedirecionadoParaOFormularioDeSignUp() {
+        demonstrationPage.checarRedirecionamento("https://app.phptravels.com/signup");
     }
 }
