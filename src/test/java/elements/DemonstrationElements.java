@@ -55,4 +55,7 @@ public class DemonstrationElements {
 
     @FindBy (xpath = "//div[@class='completed']")
     public WebElement divComplete;
+
+    @FindBy (xpath = "//label[@for='whatsapp']")
+    public WebElement placeholderWhatsapp;
 }

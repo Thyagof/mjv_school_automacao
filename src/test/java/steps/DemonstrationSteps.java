@@ -221,4 +221,39 @@ public class DemonstrationSteps {
     public void preencherOCampoEMAILComValorInvalido() {
         demonstrationPage.preencherCampo(demonstrationPage.email, "jorgeteste.com");
     }
+
+    @Then("o campo WHATSAPP NUMBER deve estar visível")
+    public void oCampoWHATSAPPNUMBERDeveEstarVisivel() {
+        demonstrationPage.validarVisibilidadeDoElemento(demonstrationPage.whatsappNumber);
+    }
+
+    @Then("o placeholder do campo WHATSAPP NUMBER deve estar correto")
+    public void oPlaceholderDoCampoWHATSAPPNUMBERDeveEstarCorreto() {
+        demonstrationPage.validarTextoDoElemento(demonstrationPage.placeholderWhatsapp, "Whatsapp Number");
+    }
+
+    @Then("o campo WHATSAPP NUMBER deve estar devidamente preenchido")
+    public void oCampoWHATSAPPNUMBERDeveEstarDevidamentePreenchido() {
+        demonstrationPage.validarTextoDoInput(demonstrationPage.whatsappNumber, "11963636363", "eq");
+    }
+
+    @When("preencher o campo WHATSAPP NUMBER com letras")
+    public void preencherOCampoWHATSAPPNUMBERComLetras() {
+        demonstrationPage.preencherCampo(demonstrationPage.whatsappNumber, "teste");
+    }
+
+    @Then("o campo WHATSAPP NUMBER não deve aceitar letras")
+    public void oCampoWHATSAPPNUMBERNaoDeveAceitarLetras() {
+        demonstrationPage.validarTextoDoInput(demonstrationPage.whatsappNumber, "teste", "dif");
+    }
+
+    @When("clicar no campo WHATSAPP NUMBER")
+    public void clicarNoCampoWHATSAPPNUMBER() {
+        demonstrationPage.clickNoElemento(demonstrationPage.whatsappNumber);
+    }
+
+    @Then("a borda do campo WHATSAPP NUMBER deve mudar de cor")
+    public void aBordaDoCampoWHATSAPPNUMBERDeveMudarDeCor() {
+        demonstrationPage.validarACorDaBorda(demonstrationPage.whatsappNumber, "rgb(40, 101, 254)");
+    }
 }

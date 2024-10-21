@@ -28,7 +28,7 @@ public class DemonstrationPage extends DemonstrationElements {
         driver.get("https://phptravels.com/demo");
     }
 
-    public void preencherCampo(WebElement elemento, String texto){
+    public void preencherCampo(WebElement elemento, String texto) {
         elemento.sendKeys(texto);
     }
 
@@ -54,13 +54,13 @@ public class DemonstrationPage extends DemonstrationElements {
         Assertions.assertEquals(elemento.getText(), texto);
     }
 
-    public void validarACorDoElemento(WebElement elemento, String rgb){
+    public void validarACorDoElemento(WebElement elemento, String rgb) {
         String corHexAtual = Color.fromString(elemento.getCssValue("background-color")).asHex();
         String corHexEsperada = Color.fromString(rgb).asHex();
         Assertions.assertEquals(corHexEsperada, corHexAtual);
     }
 
-    public void hoverNoElemento(WebElement elemento){
+    public void hoverNoElemento(WebElement elemento) {
         action.moveToElement(elemento).perform();
         try {
             Thread.sleep(1000);
@@ -86,5 +86,20 @@ public class DemonstrationPage extends DemonstrationElements {
     public void preencheCaptcha() {
         Integer resultado = Integer.valueOf(numberCaptcha1.getText()) + Integer.valueOf(numberCaptcha2.getText());
         preencherCampo(resultCaptcha, Integer.toString(resultado));
+    }
+
+    public void validarTextoDoInput(WebElement input, String textoEsperado, String tipoDeValidacao) {
+        String textoAtual = input.getAttribute("value");
+        if (tipoDeValidacao == "eq") {
+            Assertions.assertEquals(textoEsperado, textoAtual);
+        } else if (tipoDeValidacao == "dif") {
+            Assertions.assertNotEquals(textoEsperado, textoAtual);
+        }
+    }
+
+    public void validarACorDaBorda(WebElement elemento, String rgbEsperada) {
+        String corHexAtual = Color.fromString(elemento.getCssValue("border-color")).asHex();
+        String corHexEsperada = Color.fromString(rgbEsperada).asHex();
+        Assertions.assertEquals(corHexEsperada, corHexAtual);
     }
 }
