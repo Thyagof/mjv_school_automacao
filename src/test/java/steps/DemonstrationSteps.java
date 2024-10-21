@@ -168,12 +168,12 @@ public class DemonstrationSteps {
 
     @When("preencher o campo FIRST NAME")
     public void preencherOCampoFIRSTNAME() {
-        demonstrationPage.preencherCampo(demonstrationPage.firstName, "Jorge");
+        demonstrationPage.preencherCampo(demonstrationPage.firstName, "Kleber");
     }
 
     @And("preencher o campo LAST NAME")
     public void preencherOCampoLASTNAME() {
-        demonstrationPage.preencherCampo(demonstrationPage.lastName, "Teste");
+        demonstrationPage.preencherCampo(demonstrationPage.lastName, "Junior");
     }
 
     @And("selecionar o país no campo SELECT COUNTRY")
@@ -193,7 +193,7 @@ public class DemonstrationSteps {
 
     @And("preencher o campo EMAIL")
     public void preencherOCampoEMAIL() {
-        demonstrationPage.preencherCampo(demonstrationPage.email, "jorge@teste.com");
+        demonstrationPage.preencherCampo(demonstrationPage.email, "jorge@gmail.com");
     }
 
     @And("preencher o CAPTCHA")
@@ -250,5 +250,10 @@ public class DemonstrationSteps {
     @When("der hover no campo WHATSAPP NUMBER")
     public void derHoverNoCampoWHATSAPPNUMBER() {
         demonstrationPage.hoverNoElemento(demonstrationPage.whatsappNumber);
+    }
+
+    @And("limpar o campo EMAIL")
+    public void limparOCampoEMAIL() {
+        demonstrationPage.limparTextoDoInput(demonstrationPage.email);
     }
 }

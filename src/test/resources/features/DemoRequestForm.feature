@@ -43,6 +43,7 @@ Feature: DemoRequestForm
     And preencher o campo EMAIL com valor inválido
     And preencher o CAPTCHA
     And clicar no botão Submit
+    And limpar o campo EMAIL
     And preencher o campo EMAIL
     And clicar no botão Submit
     Then deve ser exibido aviso de que as credenciais foram enviadas

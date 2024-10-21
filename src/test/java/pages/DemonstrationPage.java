@@ -32,8 +32,9 @@ public class DemonstrationPage extends DemonstrationElements {
         elemento.sendKeys(texto);
     }
 
-    public void clickNoElemento(WebElement element) {
-        action.click(element).perform();
+    public void clickNoElemento(WebElement elemento) {
+        aguardarElementoSeTornarClicavel(elemento);
+        action.click(elemento).perform();
     }
 
     public void validarRedirecionamento(String url) {
@@ -44,9 +45,18 @@ public class DemonstrationPage extends DemonstrationElements {
         Assertions.assertEquals(url, driver.getCurrentUrl());
     }
 
-    public void validarVisibilidadeDoElemento(WebElement elemento) {
+    public void aguardarElementoSeTornarVisível(WebElement elemento) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         wait.until(ExpectedConditions.visibilityOf(elemento));
+    }
+
+    public void aguardarElementoSeTornarClicavel(WebElement elemento) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait.until(ExpectedConditions.elementToBeClickable(elemento));
+    }
+
+    public void validarVisibilidadeDoElemento(WebElement elemento) {
+        aguardarElementoSeTornarVisível(elemento);
         Assertions.assertTrue(elemento.isDisplayed());
     }
 
@@ -91,5 +101,9 @@ public class DemonstrationPage extends DemonstrationElements {
     public void validarTextoDoInput(WebElement input, String textoEsperado) {
         String textoAtual = input.getAttribute("value");
         Assertions.assertEquals(textoEsperado, textoAtual);
+    }
+
+    public void limparTextoDoInput(WebElement input) {
+        input.clear();
     }
 }
