@@ -24,6 +24,8 @@ public class DemonstrationPage extends DemonstrationElements {
         PageFactory.initElements(driver, this);
     }
 
+    //Métodos de ação
+
     public void acessarSite() {
         driver.get("https://phptravels.com/demo");
     }
@@ -37,14 +39,6 @@ public class DemonstrationPage extends DemonstrationElements {
         action.click(elemento).perform();
     }
 
-    public void validarRedirecionamento(String url) {
-        Object[] windowHandles = driver.getWindowHandles().toArray();
-        if (windowHandles.length > 1) {
-            driver.switchTo().window((String) windowHandles[1]);
-        }
-        Assertions.assertEquals(url, driver.getCurrentUrl());
-    }
-
     public void aguardarElementoSeTornarVisível(WebElement elemento) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         wait.until(ExpectedConditions.visibilityOf(elemento));
@@ -53,6 +47,44 @@ public class DemonstrationPage extends DemonstrationElements {
     public void aguardarElementoSeTornarClicavel(WebElement elemento) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         wait.until(ExpectedConditions.elementToBeClickable(elemento));
+    }
+
+    public void aguardarAlertaExistir() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait.until(ExpectedConditions.alertIsPresent());
+    }
+
+    public void hoverNoElemento(WebElement elemento) {
+        action.moveToElement(elemento).perform();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void selecionarItemSelect(String texto) {
+        Select select = new Select(selectCountry);
+        select.selectByVisibleText(texto);
+    }
+
+    public void preencheCaptcha() {
+        Integer resultado = Integer.valueOf(numberCaptcha1.getText()) + Integer.valueOf(numberCaptcha2.getText());
+        preencherCampo(resultCaptcha, Integer.toString(resultado));
+    }
+
+    public void limparTextoDoInput(WebElement input) {
+        input.clear();
+    }
+
+    //Métodos de validação
+
+    public void validarRedirecionamento(String url) {
+        Object[] windowHandles = driver.getWindowHandles().toArray();
+        if (windowHandles.length > 1) {
+            driver.switchTo().window((String) windowHandles[1]);
+        }
+        Assertions.assertEquals(url, driver.getCurrentUrl());
     }
 
     public void validarVisibilidadeDoElemento(WebElement elemento) {
@@ -70,40 +102,16 @@ public class DemonstrationPage extends DemonstrationElements {
         Assertions.assertEquals(corHexEsperada, corHexAtual);
     }
 
-    public void hoverNoElemento(WebElement elemento) {
-        action.moveToElement(elemento).perform();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     public void validarAlerta(String texto) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.alertIsPresent());
+        aguardarAlertaExistir();
         Alert alert = driver.switchTo().alert();
         String alertTexto = alert.getText();
         alert.dismiss();
         Assertions.assertEquals(texto, alertTexto);
     }
 
-    public void selecionarItemSelect(String texto) {
-        Select select = new Select(selectCountry);
-        select.selectByVisibleText(texto);
-    }
-
-    public void preencheCaptcha() {
-        Integer resultado = Integer.valueOf(numberCaptcha1.getText()) + Integer.valueOf(numberCaptcha2.getText());
-        preencherCampo(resultCaptcha, Integer.toString(resultado));
-    }
-
     public void validarTextoDoInput(WebElement input, String textoEsperado) {
         String textoAtual = input.getAttribute("value");
         Assertions.assertEquals(textoEsperado, textoAtual);
-    }
-
-    public void limparTextoDoInput(WebElement input) {
-        input.clear();
     }
 }

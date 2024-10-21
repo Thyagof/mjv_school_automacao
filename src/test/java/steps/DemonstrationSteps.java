@@ -24,7 +24,7 @@ public class DemonstrationSteps {
         System.setProperty("webdriver.edge.driver", "src/test/resources/drivers/msedgedriver.exe");
         EdgeOptions options = new EdgeOptions();
         options.addArguments("--start-maximized");
-//        options.addArguments("--headless=new");
+        //options.addArguments("--headless=new");
         driver = new EdgeDriver(options);
 //        driver = new ChromeDriver(options);
         demonstrationPage = new DemonstrationPage(driver);
