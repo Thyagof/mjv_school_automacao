@@ -54,8 +54,8 @@ public class DemonstrationPage extends DemonstrationElements {
         Assertions.assertEquals(elemento.getText(), texto);
     }
 
-    public void validarACorDoElemento(WebElement elemento, String rgb) {
-        String corHexAtual = Color.fromString(elemento.getCssValue("background-color")).asHex();
+    public void validarACorDeAtributo(WebElement elemento, String atributo, String rgb) {
+        String corHexAtual = Color.fromString(elemento.getCssValue(atributo)).asHex();
         String corHexEsperada = Color.fromString(rgb).asHex();
         Assertions.assertEquals(corHexEsperada, corHexAtual);
     }
@@ -95,11 +95,5 @@ public class DemonstrationPage extends DemonstrationElements {
         } else if (tipoDeValidacao == "dif") {
             Assertions.assertNotEquals(textoEsperado, textoAtual);
         }
-    }
-
-    public void validarACorDaBorda(WebElement elemento, String rgbEsperada) {
-        String corHexAtual = Color.fromString(elemento.getCssValue("border-color")).asHex();
-        String corHexEsperada = Color.fromString(rgbEsperada).asHex();
-        Assertions.assertEquals(corHexEsperada, corHexAtual);
     }
 }

@@ -63,7 +63,7 @@ public class DemonstrationSteps {
 
     @Then("a cor do botão Login deve estar correta")
     public void aCorDoBotaoLoginDeveEstarCorreta() {
-        demonstrationPage.validarACorDoElemento(demonstrationPage.btnLogin, "rgb(0, 82, 231)");
+        demonstrationPage.validarACorDeAtributo(demonstrationPage.btnLogin, "background-color", "rgb(0, 82, 231)");
     }
 
     @When("der hover no botão Login")
@@ -73,7 +73,7 @@ public class DemonstrationSteps {
 
     @Then("a cor do botão em hover Login deve estar correta")
     public void aCorDoBotaoEmHoverLoginDeveEstarCorreta() {
-        demonstrationPage.validarACorDoElemento(demonstrationPage.btnLogin, "rgb(0, 94, 255)");
+        demonstrationPage.validarACorDeAtributo(demonstrationPage.btnLogin, "background-color", "rgb(0, 94, 255)");
     }
 
     @Then("o botão Sign Up deve estar visível")
@@ -88,7 +88,7 @@ public class DemonstrationSteps {
 
     @Then("a cor do botão Sign Up deve estar correta")
     public void aCorDoBotaoSignUpDeveEstarCorreta() {
-        demonstrationPage.validarACorDoElemento(demonstrationPage.btnSignUp, "rgb(248, 249, 250)");
+        demonstrationPage.validarACorDeAtributo(demonstrationPage.btnSignUp, "background-color", "rgb(248, 249, 250)");
     }
 
     @When("der hover no botão Sign Up")
@@ -98,7 +98,7 @@ public class DemonstrationSteps {
 
     @Then("a cor do botão em hover Sign Up deve estar correta")
     public void aCorDoBotaoEmHoverSignUpDeveEstarCorreta() {
-        demonstrationPage.validarACorDoElemento(demonstrationPage.btnSignUp, "rgb(211, 212, 213)");
+        demonstrationPage.validarACorDeAtributo(demonstrationPage.btnSignUp, "background-color","rgb(211, 212, 213)");
     }
 
     @When("clicar no botão de Sign Up")
@@ -138,7 +138,7 @@ public class DemonstrationSteps {
 
     @Then("a cor do item Themes do menu dropdown deve estar correto")
     public void aCorDoItemThemesDoMenuDropdownDeveEstarCorreto() {
-        demonstrationPage.validarACorDoElemento(demonstrationPage.dropDownItemThemes, "rgb(248, 249, 250)");
+        demonstrationPage.validarACorDeAtributo(demonstrationPage.dropDownItemThemes, "background-color", "rgb(248, 249, 250)");
     }
 
     @And("clicar no Item Themes do dropdown Product")
@@ -244,7 +244,7 @@ public class DemonstrationSteps {
 
     @Then("o campo WHATSAPP NUMBER não deve aceitar letras")
     public void oCampoWHATSAPPNUMBERNaoDeveAceitarLetras() {
-        demonstrationPage.validarTextoDoInput(demonstrationPage.whatsappNumber, "teste", "dif");
+        demonstrationPage.validarTextoDoInput(demonstrationPage.whatsappNumber, "", "eq");
     }
 
     @When("clicar no campo WHATSAPP NUMBER")
@@ -254,6 +254,11 @@ public class DemonstrationSteps {
 
     @Then("a borda do campo WHATSAPP NUMBER deve mudar de cor")
     public void aBordaDoCampoWHATSAPPNUMBERDeveMudarDeCor() {
-        demonstrationPage.validarACorDaBorda(demonstrationPage.whatsappNumber, "rgb(40, 101, 254)");
+        demonstrationPage.validarACorDeAtributo(demonstrationPage.whatsappNumber, "border-color", "rgb(40, 101, 254)");
+    }
+
+    @When("der hover no campo WHATSAPP NUMBER")
+    public void derHoverNoCampoWHATSAPPNUMBER() {
+        demonstrationPage.hoverNoElemento(demonstrationPage.whatsappNumber);
     }
 }

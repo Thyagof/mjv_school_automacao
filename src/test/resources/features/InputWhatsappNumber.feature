@@ -13,10 +13,10 @@ Feature: Input WhatsApp Number
     When preencher o campo WHATSAPP NUMBER
     Then o campo WHATSAPP NUMBER deve estar devidamente preenchido
 
-  Scenario: Validar que o campo WhatsApp Number não aceita letras
+  Scenario: Validar a cor da borda do campo WhatsApp Number ao sofrer hover
     Given que o usuário esteja na página PHPTRAVELS
-    When preencher o campo WHATSAPP NUMBER com letras
-    Then o campo WHATSAPP NUMBER não deve aceitar letras
+    When der hover no campo WHATSAPP NUMBER
+    Then a borda do campo WHATSAPP NUMBER deve mudar de cor
 
   Scenario: Validar a cor da borda do campo WhatsApp Number ao ser clicado
     Given que o usuário esteja na página PHPTRAVELS
