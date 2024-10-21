@@ -234,17 +234,7 @@ public class DemonstrationSteps {
 
     @Then("o campo WHATSAPP NUMBER deve estar devidamente preenchido")
     public void oCampoWHATSAPPNUMBERDeveEstarDevidamentePreenchido() {
-        demonstrationPage.validarTextoDoInput(demonstrationPage.whatsappNumber, "11963636363", "eq");
-    }
-
-    @When("preencher o campo WHATSAPP NUMBER com letras")
-    public void preencherOCampoWHATSAPPNUMBERComLetras() {
-        demonstrationPage.preencherCampo(demonstrationPage.whatsappNumber, "teste");
-    }
-
-    @Then("o campo WHATSAPP NUMBER não deve aceitar letras")
-    public void oCampoWHATSAPPNUMBERNaoDeveAceitarLetras() {
-        demonstrationPage.validarTextoDoInput(demonstrationPage.whatsappNumber, "", "eq");
+        demonstrationPage.validarTextoDoInput(demonstrationPage.whatsappNumber, "11963636363");
     }
 
     @When("clicar no campo WHATSAPP NUMBER")

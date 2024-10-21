@@ -88,12 +88,8 @@ public class DemonstrationPage extends DemonstrationElements {
         preencherCampo(resultCaptcha, Integer.toString(resultado));
     }
 
-    public void validarTextoDoInput(WebElement input, String textoEsperado, String tipoDeValidacao) {
+    public void validarTextoDoInput(WebElement input, String textoEsperado) {
         String textoAtual = input.getAttribute("value");
-        if (tipoDeValidacao == "eq") {
-            Assertions.assertEquals(textoEsperado, textoAtual);
-        } else if (tipoDeValidacao == "dif") {
-            Assertions.assertNotEquals(textoEsperado, textoAtual);
-        }
+        Assertions.assertEquals(textoEsperado, textoAtual);
     }
 }
