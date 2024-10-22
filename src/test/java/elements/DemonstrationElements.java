@@ -58,4 +58,13 @@ public class DemonstrationElements {
 
     @FindBy (xpath = "//label[@for='whatsapp']")
     public WebElement placeholderWhatsapp;
+
+    @FindBy (xpath = "//p[@class='mb-0']")
+    public WebElement loginFormTitle;
+
+    @FindBy (xpath = "//p[@class='mb-3']")
+    public WebElement signupFormTitle;
+
+    @FindBy (xpath = "//h1[@class='mb-0']")
+    public WebElement themesTitle;
 }

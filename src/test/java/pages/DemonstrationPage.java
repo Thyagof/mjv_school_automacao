@@ -68,7 +68,7 @@ public class DemonstrationPage extends DemonstrationElements {
         select.selectByVisibleText(texto);
     }
 
-    public void preencheCaptcha() {
+    public void preencherCaptcha() {
         Integer resultado = Integer.valueOf(numberCaptcha1.getText()) + Integer.valueOf(numberCaptcha2.getText());
         preencherCampo(resultCaptcha, Integer.toString(resultado));
     }
@@ -79,12 +79,14 @@ public class DemonstrationPage extends DemonstrationElements {
 
     //Métodos de validação
 
-    public void validarRedirecionamento(String url) {
+    public void validarRedirecionamento(String url, String titulo, WebElement elemento) {
         Object[] windowHandles = driver.getWindowHandles().toArray();
         if (windowHandles.length > 1) {
             driver.switchTo().window((String) windowHandles[1]);
         }
         Assertions.assertEquals(url, driver.getCurrentUrl());
+        Assertions.assertEquals(titulo, driver.getTitle());
+        Assertions.assertTrue(elemento.isDisplayed());
     }
 
     public void validarVisibilidadeDoElemento(WebElement elemento) {

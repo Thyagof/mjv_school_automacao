@@ -19,14 +19,14 @@ public class DemonstrationSteps {
 
     @Before
     public void iniciarDriver(){
-//        System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");
-//        ChromeOptions options = new ChromeOptions();
-        System.setProperty("webdriver.edge.driver", "src/test/resources/drivers/msedgedriver.exe");
-        EdgeOptions options = new EdgeOptions();
+        System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");
+        ChromeOptions options = new ChromeOptions();
+//        System.setProperty("webdriver.edge.driver", "src/test/resources/drivers/msedgedriver.exe");
+//        EdgeOptions options = new EdgeOptions();
         options.addArguments("--start-maximized");
         //options.addArguments("--headless=new");
-        driver = new EdgeDriver(options);
-//        driver = new ChromeDriver(options);
+//        driver = new EdgeDriver(options);
+        driver = new ChromeDriver(options);
         demonstrationPage = new DemonstrationPage(driver);
     }
 
@@ -48,7 +48,7 @@ public class DemonstrationSteps {
 
     @Then("deve ser redirecionado para o formulário de login")
     public void deveSerRedirecionadoParaOFormularioDeLogin() {
-        demonstrationPage.validarRedirecionamento("https://app.phptravels.com/login");
+        demonstrationPage.validarRedirecionamento("https://app.phptravels.com/login", "Login", demonstrationPage.loginFormTitle);
     }
 
     @Then("o botão Login deve estar visível")
@@ -108,7 +108,7 @@ public class DemonstrationSteps {
 
     @Then("deve ser redirecionado para o formulário de Sign Up")
     public void deveSerRedirecionadoParaOFormularioDeSignUp() {
-        demonstrationPage.validarRedirecionamento("https://app.phptravels.com/signup");
+        demonstrationPage.validarRedirecionamento("https://app.phptravels.com/signup", "Signup", demonstrationPage.signupFormTitle);
     }
 
     @Then("o texto do Item de Navegação Product deve estar correto")
@@ -148,7 +148,7 @@ public class DemonstrationSteps {
 
     @Then("deve ser redirecionado para a página correta")
     public void deveSerRedirecionadoParaAPaginaCorreta() {
-        demonstrationPage.validarRedirecionamento("https://phptravels.com/themes");
+        demonstrationPage.validarRedirecionamento("https://phptravels.com/themes", "Themes - Phptravels", demonstrationPage.themesTitle);
     }
 
     @Then("o formulário Demo Request Form deve estar visível")
@@ -198,7 +198,7 @@ public class DemonstrationSteps {
 
     @And("preencher o CAPTCHA")
     public void preencherOCAPTCHA() {
-        demonstrationPage.preencheCaptcha();
+        demonstrationPage.preencherCaptcha();
     }
 
     @Then("deve ser exibido aviso de que as credenciais foram enviadas")
