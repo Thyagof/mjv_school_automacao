@@ -9,7 +9,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.*;
-
 import java.time.Duration;
 
 public class DemonstrationPage extends DemonstrationElements {
@@ -30,8 +29,8 @@ public class DemonstrationPage extends DemonstrationElements {
         driver.get("https://phptravels.com/demo");
     }
 
-    public void preencherCampo(WebElement elemento, String texto) {
-        elemento.sendKeys(texto);
+    public void preencherCampo(WebElement input, String texto) {
+        input.sendKeys(texto);
     }
 
     public void clickNoElemento(WebElement elemento) {
@@ -55,16 +54,16 @@ public class DemonstrationPage extends DemonstrationElements {
     }
 
     public void hoverNoElemento(WebElement elemento) {
-        action.moveToElement(elemento).perform();
         try {
+            action.moveToElement(elemento).perform();
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public void selecionarItemSelect(String texto) {
-        Select select = new Select(selectCountry);
+    public void selecionarItemSelect(WebElement element, String texto) {
+        Select select = new Select(element);
         select.selectByVisibleText(texto);
     }
 
@@ -107,9 +106,8 @@ public class DemonstrationPage extends DemonstrationElements {
     public void validarAlerta(String texto) {
         aguardarAlertaExistir();
         Alert alert = driver.switchTo().alert();
-        String alertTexto = alert.getText();
+        Assertions.assertEquals(texto, alert.getText());
         alert.dismiss();
-        Assertions.assertEquals(texto, alertTexto);
     }
 
     public void validarTextoDoInput(WebElement input, String textoEsperado) {

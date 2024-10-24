@@ -19,14 +19,11 @@ public class DemonstrationSteps {
 
     @Before
     public void iniciarDriver(){
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");
-        ChromeOptions options = new ChromeOptions();
-//        System.setProperty("webdriver.edge.driver", "src/test/resources/drivers/msedgedriver.exe");
-//        EdgeOptions options = new EdgeOptions();
+        System.setProperty("webdriver.edge.driver", "src/test/resources/drivers/msedgedriver.exe");
+        EdgeOptions options = new EdgeOptions();
         options.addArguments("--start-maximized");
-        //options.addArguments("--headless=new");
-//        driver = new EdgeDriver(options);
-        driver = new ChromeDriver(options);
+//        options.addArguments("--headless=new");
+        driver = new EdgeDriver(options);
         demonstrationPage = new DemonstrationPage(driver);
     }
 
@@ -35,11 +32,10 @@ public class DemonstrationSteps {
         driver.quit();
     }
 
-    @Given("que o usuário esteja na página PHPTRAVELS")
+    @Given("que o usuário esteja na página de demonstração do PHPTRAVELS")
     public void queOUsuarioEstejaNaPaginaPHPTRAVELS() {
         demonstrationPage.acessarSite();
     }
-
 
     @When("clicar no botão de Login")
     public void clicarNoBotaoDeLogin() {
@@ -178,7 +174,7 @@ public class DemonstrationSteps {
 
     @And("selecionar o país no campo SELECT COUNTRY")
     public void selecionarOPaisNoCampoSELECTCOUNTRY() {
-        demonstrationPage.selecionarItemSelect("Brazil +55");
+        demonstrationPage.selecionarItemSelect(demonstrationPage.selectCountry,"Brazil +55");
     }
 
     @And("preencher o campo WHATSAPP NUMBER")
