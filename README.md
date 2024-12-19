@@ -1,5 +1,7 @@
 # Exercício Final - MJV School: Testes Automatizados
 
+[README ENGLISH](https://github.com/Thyagof/mjv_school_automacao/blob/main/readme-en.md)
+
 ## Desafio
 
 O desafio será simples, porém com um certo nível de complexidade. O objetivo é criar um código **utilizando Page Factory e Cucumber** para automatizar **5 funcionalidades** do site [phptravels.com/demo](https://phptravels.com/demo).
